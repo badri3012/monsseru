@@ -28,7 +28,7 @@ import Footer from '@/components/Footer';
 
 export default function DashboardPage() {
   const [leads, setLeads] = useState<ClientBriefData[]>([]);
-  const [selectedFilter, setSelectedFilter] = useState<'All' | 'VIP' | 'Villa' | 'CONSULTATION'>('All');
+  const [selectedFilter, setSelectedFilter] = useState<'All' | 'HIGH' | 'Villa' | 'CONSULTATION'>('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [activeModalBrief, setActiveModalBrief] = useState<ClientBriefData | null>(null);
   const [contactingClient, setContactingClient] = useState<ClientBriefData | null>(null);
@@ -72,7 +72,7 @@ export default function DashboardPage() {
 
     if (!matchesSearch) return false;
 
-    if (selectedFilter === 'VIP') return lead.intelligence.intent === 'VIP';
+    if (selectedFilter === 'HIGH') return lead.intelligence.intent === 'HIGH';
     if (selectedFilter === 'Villa') return lead.projectType.includes('Villa');
     if (selectedFilter === 'CONSULTATION') return lead.status === 'CONSULTATION';
     return true;
@@ -80,7 +80,7 @@ export default function DashboardPage() {
 
   // Calculate Metrics
   const totalEnquiries = leads.length;
-  const highIntentCount = leads.filter((l) => l.intelligence.intent === 'VIP' || l.intelligence.intent === 'HIGH').length;
+  const highIntentCount = leads.filter((l) => l.intelligence.intent === 'HIGH').length;
   const scheduledCount = leads.filter((l) => l.status === 'CONSULTATION').length;
   const totalPipeline = 'AED 54.8M';
 
@@ -215,7 +215,7 @@ export default function DashboardPage() {
         <div className="p-5 bg-white border border-[#C5A059]/20 shadow-xs flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4">
           
           <div className="flex flex-wrap gap-2">
-            {(['All', 'VIP', 'Villa', 'CONSULTATION'] as const).map((tab) => (
+            {(['All', 'HIGH', 'Villa', 'CONSULTATION'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setSelectedFilter(tab)}
@@ -225,7 +225,7 @@ export default function DashboardPage() {
                     : 'bg-[#FAF8F5] text-[#6E6D6A] hover:text-[#18181A] border border-[#C5A059]/20'
                 }`}
               >
-                {tab === 'All' ? 'All Enquiries' : tab === 'VIP' ? 'VIP Intent Only' : tab === 'Villa' ? 'Villa Transformations' : 'Consultations'}
+                {tab === 'All' ? 'All Enquiries' : tab === 'HIGH' ? 'High Intent' : tab === 'Villa' ? 'Villa Transformations' : 'Consultations'}
               </button>
             ))}
           </div>
@@ -289,7 +289,7 @@ export default function DashboardPage() {
                     {/* Intent & Score */}
                     <td className="py-4 px-6">
                       <span className={`inline-block px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase ${
-                        lead.intelligence.intent === 'VIP'
+                        lead.intelligence.intent === 'HIGH'
                           ? 'bg-[#18181A] text-[#D4AF37] border border-[#C5A059]'
                           : 'bg-[#C5A059]/20 text-[#A4813D]'
                       }`}>
