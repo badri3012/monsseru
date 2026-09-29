@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-ivory: #FAF8F5;
+    --bg-ivory-card: #FFFFFF;
+    --bg-ivory-subtle: #F3EFEA;
+    --text-graphite: #18181A;
+    --text-muted: #6E6D6A;
+    --accent-gold: #C5A059;
+    --accent-gold-light: #DFCA9B;
+    --accent-gold-dark: #A4813D;
+    --border-warm: rgba(197, 160, 89, 0.2);
+    --border-graphite: rgba(24, 24, 26, 0.1);
+  }
+
+  body {
+    background-color: var(--bg-ivory);
+    color: var(--text-graphite);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9D2C7;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A059;
+}
+
+/* Luxury Typography Helpers */
+.font-serif-luxury {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.font-sans-luxury {
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Gold Gradient Text */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #D4AF37 0%, #C5A059 50%, #9E7D3B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Soft Gold Shimmer Border */
+.gold-border-glow {
+  box-shadow: 0 0 0 1px rgba(197, 160, 89, 0.25), 0 10px 30px -10px rgba(197, 160, 89, 0.12);
+}
+
+.gold-hover-glow:hover {
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.2);
+}
+
+/* Subtle Architectural Grid Background */
+.bg-arch-grid {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(24, 24, 26, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 24, 26, 0.03) 1px, transparent 1px);
+}
+
+/* Smooth pulse for typing indicator */
+@keyframes pulseDot {
+  0%, 100% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.animate-pulse-dot-1 {
+  animation: pulseDot 1.4s infinite ease-in-out;
+}
+.animate-pulse-dot-2 {
+  animation: pulseDot 1.4s infinite ease-in-out 0.2s;
+}
+.animate-pulse-dot-3 {
+  animation: pulseDot 1.4s infinite ease-in-out 0.4s;
+}
+
+/* Scanner bar animation */
+@keyframes scanLine {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(500%); opacity: 0; }
+}
+
+.animate-scan {
+  animation: scanLine 2.5s infinite linear;
+}
